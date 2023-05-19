@@ -2,6 +2,8 @@ import SwiftUI
 
 struct DayWorkoutScreen: View {
     let dayOfWeek: DayOfWeek
+    @EnvironmentObject private var exerciseStore: ExerciseStore
+    @State private var isAddingExercise = false
     
     var body: some View {
         VStack {
@@ -9,10 +11,12 @@ struct DayWorkoutScreen: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(Color(red: 0xDD / 255, green: 0x00 / 255, blue: 0xFF / 255))
+                .padding(.top)
+                .padding(.bottom)
             
-            if let exercises = getExercises(for: dayOfWeek) {
-                ForEach(exercises, id: \.self) { exercise in
-                    Text(exercise.name)
+            if let exercises = exerciseStore.getExercises(for: dayOfWeek) {
+                ForEach(exercises, id: \.self) { dayExercise in
+                    Text(dayExercise.exercise.name)
                     // Display additional information for the exercise if needed
                 }
             } else {
@@ -20,16 +24,33 @@ struct DayWorkoutScreen: View {
                     .font(.title2)
                     .foregroundColor(.gray)
             }
+            
+            Spacer()
+            
+            Button(action: {
+                isAddingExercise = true
+            }) {
+                Text("Add Exercise")
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
+            .sheet(isPresented: $isAddingExercise) {
+                NavigationView {
+                    AddExerciseView(muscleGroups: ExerciseData.muscleGroups, dayOfWeek: dayOfWeek)
+                        .environmentObject(exerciseStore)
+                        .navigationBarItems(trailing: Button(action: {
+                            isAddingExercise = false
+                        }) {
+                            Text("Done")
+                        })
+                }
+            }
         }
     }
-    
-    func getExercises(for day: DayOfWeek) -> [Exercise]? {
-        // Here, you can implement the logic to get the exercises for the given day
-        // This could involve reading from a database, a local file, or any other source
-        // For now, we will just return nil to indicate no exercises for any day
-        return nil
-    }
 }
+
 
 struct DayWorkoutScreen_Previews: PreviewProvider {
     static var previews: some View {

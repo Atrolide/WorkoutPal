@@ -1,14 +1,5 @@
 import SwiftUI
 
-@main
-struct Workout_PalApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
-}
-
 struct ContentView: View {
     @State private var showSplashScreen = true
     
@@ -29,6 +20,16 @@ struct ContentView: View {
                     .opacity(showSplashScreen ? 0 : 1)
                     .transition(.opacity)
             }
+        }
+        .environmentObject(ExerciseStore()) // Store ExerciseStore at the ContentView level
+    }
+}
+
+@main
+struct Workout_PalApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
         }
     }
 }

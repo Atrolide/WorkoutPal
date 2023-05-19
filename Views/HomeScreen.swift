@@ -12,8 +12,6 @@ struct HomeScreen: View {
                         .foregroundColor(Color(red: 0x3E / 255, green: 0x1C / 255, blue: 0xA8 / 255))
                         .padding(.bottom, 6)
                     
-                   
-                    
                     ForEach(DayOfWeek.allCases, id: \.self) { day in
                         NavigationLink(destination: DayWorkoutScreen(dayOfWeek: day)) {
                             VStack(spacing: 8) {
@@ -23,23 +21,21 @@ struct HomeScreen: View {
                                     .foregroundColor(Color(red: 0xDD / 255, green: 0x00 / 255, blue: 0xFF / 255))
                                 
                                 if let workout = getWorkout(for: day) {
-                                    Text("Workout:")
-                                        .font(.subheadline)
-                                    Text(workout.description)
-                                        .font(.footnote)
+                                    ForEach(workout.muscleGroups, id: \.name) { muscleGroup in
+                                        Text(muscleGroup.name)
+                                            .font(.subheadline)
+                                    }
                                 } else {
                                     Text("Rest day")
                                         .font(.title2)
                                         .foregroundColor(.gray)
                                 }
-                                
                             }
                             .frame(maxWidth: .infinity, maxHeight: 40)
                             .padding()
                             .background(Color.white)
                             .cornerRadius(40)
                             .shadow(radius: 5)
-                        
                         }
                     }
                 }
@@ -56,6 +52,7 @@ struct HomeScreen: View {
     }
 }
 
+
 enum DayOfWeek: String, CaseIterable {
     case Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
 }
@@ -71,5 +68,6 @@ struct Workout {
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
+            .environmentObject(ExerciseStore())
     }
 }

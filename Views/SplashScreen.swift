@@ -3,7 +3,7 @@ import SwiftUI
 struct SplashScreen: View {
     var body: some View {
         ZStack {
-            Color.purple // background color or image
+            Color.purple 
             
             VStack {
                 Spacer()
