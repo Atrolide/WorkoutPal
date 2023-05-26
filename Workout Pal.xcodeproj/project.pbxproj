@@ -16,6 +16,8 @@
 		829128D32A03C6A0003B23C9 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829128D22A03C6A0003B23C9 /* Exercise.swift */; };
 		829128D52A03C9C6003B23C9 /* ExerciseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829128D42A03C9C6003B23C9 /* ExerciseData.swift */; };
 		829128D72A03DA99003B23C9 /* DayWorkoutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829128D62A03DA99003B23C9 /* DayWorkoutScreen.swift */; };
+		82EEBECC2A178E7A0055A610 /* ExerciseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EEBECB2A178E7A0055A610 /* ExerciseStore.swift */; };
+		82F097D32A0E371100B52FA8 /* AddExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F097D22A0E371100B52FA8 /* AddExerciseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		829128D22A03C6A0003B23C9 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		829128D42A03C9C6003B23C9 /* ExerciseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseData.swift; sourceTree = "<group>"; };
 		829128D62A03DA99003B23C9 /* DayWorkoutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWorkoutScreen.swift; sourceTree = "<group>"; };
+		82EEBECB2A178E7A0055A610 /* ExerciseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseStore.swift; sourceTree = "<group>"; };
+		82F097D22A0E371100B52FA8 /* AddExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 				829128D02A03C685003B23C9 /* MuscleGroup.swift */,
 				829128D22A03C6A0003B23C9 /* Exercise.swift */,
 				829128D42A03C9C6003B23C9 /* ExerciseData.swift */,
+				82EEBECB2A178E7A0055A610 /* ExerciseStore.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -94,6 +99,7 @@
 				82520BC229FA5B8500869E64 /* HomeScreen.swift */,
 				829128D62A03DA99003B23C9 /* DayWorkoutScreen.swift */,
 				820E5C0E2A0CFBFA001FCAA7 /* SplashScreen.swift */,
+				82F097D22A0E371100B52FA8 /* AddExerciseView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,8 +176,10 @@
 			files = (
 				829128D72A03DA99003B23C9 /* DayWorkoutScreen.swift in Sources */,
 				829128D52A03C9C6003B23C9 /* ExerciseData.swift in Sources */,
+				82EEBECC2A178E7A0055A610 /* ExerciseStore.swift in Sources */,
 				820E5C0F2A0CFBFA001FCAA7 /* SplashScreen.swift in Sources */,
 				823ED43329F7D17A001E0F7B /* Workout_PalApp.swift in Sources */,
+				82F097D32A0E371100B52FA8 /* AddExerciseView.swift in Sources */,
 				829128D32A03C6A0003B23C9 /* Exercise.swift in Sources */,
 				82520BC329FA5B8500869E64 /* HomeScreen.swift in Sources */,
 				829128D12A03C685003B23C9 /* MuscleGroup.swift in Sources */,
@@ -303,6 +311,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Workout Pal/Preview Content\"";
+				DEVELOPMENT_TEAM = 2VJ7Q877TR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -331,6 +340,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Workout Pal/Preview Content\"";
+				DEVELOPMENT_TEAM = 2VJ7Q877TR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
