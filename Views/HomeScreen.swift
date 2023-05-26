@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    @EnvironmentObject private var exerciseStore: ExerciseStore
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -20,10 +22,23 @@ struct HomeScreen: View {
                                     .fontWeight(.bold)
                                     .foregroundColor(Color(red: 0xDD / 255, green: 0x00 / 255, blue: 0xFF / 255))
                                 
-                                if let workout = getWorkout(for: day) {
-                                    ForEach(workout.muscleGroups, id: \.name) { muscleGroup in
-                                        Text(muscleGroup.name)
-                                            .font(.subheadline)
+                                let exercises = exerciseStore.getExercises(for: day)
+                                
+                                if let muscleGroups = getMuscleGroups(for: exercises) {
+                                    HStack {
+                                        ForEach(muscleGroups.indices, id: \.self) { index in
+                                            Image(muscleGroups[index].imageName)
+                                                .resizable()
+                                                .frame(width: 30, height: 30)
+                                                .clipShape(Circle())
+
+                                            
+                                            if index < muscleGroups.count - 1 {
+                                                Text(" ")
+                                                    .font(.title2)
+                                                    .foregroundColor(.gray)
+                                            }
+                                        }
                                     }
                                 } else {
                                     Text("Rest day")
@@ -44,11 +59,23 @@ struct HomeScreen: View {
         }
     }
     
-    func getWorkout(for day: DayOfWeek) -> Workout? {
-        // Here, you can implement the logic to get the workout for the given day
-        // This could involve reading from a database, a local file, or any other source
-        // For now, we will just return nil, indicating there is no workout for any day
-        return nil
+    func getMuscleGroups(for exercises: [DayExercise]?) -> [MuscleGroup]? {
+        guard let exercises = exercises else {
+            return nil
+        }
+        
+        let exerciseNames = exercises.map { $0.exercise.name }
+        
+        var muscleGroups: [MuscleGroup] = []
+        
+        for muscleGroup in ExerciseData.muscleGroups {
+            let matchingExercises = muscleGroup.exercises.filter { exerciseNames.contains($0) }
+            if !matchingExercises.isEmpty {
+                muscleGroups.append(muscleGroup)
+            }
+        }
+        
+        return muscleGroups.isEmpty ? nil : muscleGroups
     }
 }
 
@@ -71,3 +98,4 @@ struct HomeScreen_Previews: PreviewProvider {
             .environmentObject(ExerciseStore())
     }
 }
+

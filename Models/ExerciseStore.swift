@@ -14,7 +14,6 @@ struct DayExercise: Hashable {
     }
 }
 
-
 class ExerciseStore: ObservableObject {
     @Published var dayExercises: [DayOfWeek: [DayExercise]] = [:]
     
@@ -30,5 +29,23 @@ class ExerciseStore: ObservableObject {
     
     func getExercises(for dayOfWeek: DayOfWeek) -> [DayExercise]? {
         return dayExercises[dayOfWeek]
+    }
+    
+    func removeExercise(_ exercise: Exercise, for dayOfWeek: DayOfWeek) {
+        if let exercises = dayExercises[dayOfWeek],
+           let index = exercises.firstIndex(where: { $0.exercise == exercise }) {
+            dayExercises[dayOfWeek]?.remove(at: index)
+        }
+    }
+    
+    func moveExercise(fromIndex: Int, toIndex: Int, for dayOfWeek: DayOfWeek) {
+        guard var exercises = dayExercises[dayOfWeek], fromIndex != toIndex else {
+            return
+        }
+        
+        let exercise = exercises.remove(at: fromIndex)
+        exercises.insert(exercise, at: toIndex)
+        
+        dayExercises[dayOfWeek] = exercises
     }
 }
